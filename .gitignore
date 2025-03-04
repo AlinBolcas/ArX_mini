@@ -127,6 +127,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+# API Keys
+/data/api_key.py
+
 
 # Spyder project settings
 .spyderproject

@@ -127,14 +127,13 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-# API Keys
-/data/api_key.py
 
 # Project specific
 /data/about_alin.md
 /data/about_arvolve.md
 /data/style_Alin.md
 /data/style_Arvolve.md
+/data/CV.md
 /output/
 
 

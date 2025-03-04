@@ -53,7 +53,7 @@ class Tools:
     @staticmethod
     def get_codebase_snapshot() -> Dict[str, Any]:
         """
-        Generate a structured snapshot of the current project’s codebase.
+        Generate a structured snapshot of the current project's codebase.
 
         This function retrieves the codebase snapshot using Utils.get_codebase_snapshot(),
         which scans the project directory and returns a structured dictionary containing
@@ -241,8 +241,8 @@ class Tools:
         """
         SMTP_SERVER = "smtp.gmail.com"
         SMTP_PORT = 587
-        EMAIL_USER = "info@arvolve.ai"
-        EMAIL_PASS = "cqux vlzo lthv avyn"  # Replace with a secure App Password
+        EMAIL_USER = os.getenv("EMAIL_USER")
+        EMAIL_PASS = os.getenv("EMAIL_PASS")  # App Password from .env
 
         try:
             server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
@@ -493,7 +493,7 @@ if __name__ == '__main__':
 
     # 1️⃣5️⃣ Test: Send Email
     print("Test 15: send_email")
-    recipient_email = "abolcas@gmail.com"  # Replace with a real email for actual test
+    recipient_email = "example@example.com"  # Generic placeholder email
     email_subject = "Test Email from Tools.py"
     email_message = "This is a test email sent from the Tools module."
 

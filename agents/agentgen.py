@@ -267,93 +267,89 @@ class AgentGen(TextGen):
         
       
 if __name__ == "__main__":
-    print("\n🚀 Running AgentGen Tests...\n")
-
-    # Initialize AgentGen
-    ag = AgentGen(api_keys_path=None)
-
-    # Load context files using Utils
-    about_alin = Utils.load_file("about_Alin.md")
-    about_arvolve = Utils.load_file("about_Arvolve.md")
-    style_alin = Utils.load_file("style_Alin.md")
-    style_arvolve = Utils.load_file("style_Arvolve.md")
-
-    # Merge context and system context
-    contex = (about_alin or "") + "\n" + (about_arvolve or "")
-    system_contex = (style_alin or "") + "\n" + (style_arvolve or "")
-
-    # Define a business-focused test prompt
-    test_prompt = "Develop a 2025 business strategy for Arvolve, focusing on product marketing and client acquisition."
-
-    print(f"\n📌 Test Prompt:\n{test_prompt}\n")
+    print("=== AgentGen Advanced Test Suite ===")
     
-    # Test Tool Selection
+    # Initialize AgentGen with default settings.
+    ag = AgentGen()
+    
+    # Optional: Set up system and user context for testing
+    system_contex = "You are a helpful AI assistant specializing in technology analysis."
+    contex = "Focus on providing clear, concise information about AI capabilities."
+    
+    # Setup a generic test prompt
+    test_prompt = "Analyze the advantages and limitations of large language models for business applications."
+    
+    print("\n🧪 Testing AgentGen Reasoning Capabilities:")
+    
+    # Test Plan Generation
     try:
-        selected_tools = ag.select_best_tools(test_prompt)
-        print(f"🛠️ Selected Tools: {selected_tools if selected_tools else 'No tools selected'} ✅")
+        plan_result = ag.plan(test_prompt)
+        print(f"📝 Plan Generation Result:\n{plan_result[:200]}...\n✅")
     except Exception as e:
-        print(f"❌ Error in Tool Selection: {e}")
-
-    # Test Plan
-    try:
-        plan_response = ag.plan(test_prompt, contex=contex, system_contex=system_contex)
-        print(f"📌 Plan Response:\n{plan_response}\n✅")
-    except Exception as e:
-        print(f"❌ Error in Planning: {e}")
-
+        print(f"❌ Error in Plan Generation: {e}")
+    
     # Test Future Prediction
     try:
-        future_response = ag.future_prediction(test_prompt, contex=contex, system_contex=system_contex)
-        print(f"🔮 Future Prediction Response:\n{future_response}\n✅")
+        future_result = ag.future_prediction(test_prompt)
+        print(f"🔮 Future Prediction Result:\n{future_result[:200]}...\n✅")
     except Exception as e:
         print(f"❌ Error in Future Prediction: {e}")
-
+    
     # Test Draft Response
     try:
-        draft_response = ag.draft_response(test_prompt, contex=contex, system_contex=system_contex)
-        print(f"✍️ Draft Response:\n{draft_response}\n✅")
+        draft_result = ag.draft_response(test_prompt)
+        print(f"📄 Draft Response Result:\n{draft_result[:200]}...\n✅")
     except Exception as e:
-        print(f"❌ Error in Drafting: {e}")
-
+        print(f"❌ Error in Draft Response: {e}")
+    
     # Test Critique
     try:
-        critique_response = ag.critique(draft_response, contex=contex, system_contex=system_contex)
-        print(f"🧐 Critique Response:\n{critique_response}\n✅")
+        draft = "Large language models offer numerous benefits for businesses, including automation of routine tasks and improved customer service interactions."
+        critique_result = ag.critique(draft)
+        print(f"🔍 Critique Result:\n{critique_result[:200]}...\n✅")
     except Exception as e:
         print(f"❌ Error in Critique: {e}")
-
+    
     # Test Creativity
     try:
-        creative_response = ag.creativity(test_prompt, critique_response, contex=contex, system_contex=system_contex)
-        print(f"💡 Creativity Response:\n{creative_response}\n✅")
+        previous_thoughts = "LLMs can automate customer service and content creation tasks."
+        creativity_result = ag.creativity(test_prompt, previous_thoughts)
+        print(f"💡 Creativity Result:\n{creativity_result[:200]}...\n✅")
     except Exception as e:
         print(f"❌ Error in Creativity: {e}")
-
+    
+    # Test Basic Tool Selection
+    try:
+        selected_tools = ag.select_best_tools("Create a chart showing technology adoption trends")
+        print(f"🛠️ Selected Tools: {selected_tools}\n✅")
+    except Exception as e:
+        print(f"❌ Error in Tool Selection: {e}")
+    
     # Test Base Loop
     try:
-        base_response = ag.base_loop(test_prompt, max_depth=3, contex=contex, system_contex=system_contex)
-        print(f"🔁 Base Loop Response:\n{base_response}\n✅")
+        base_response = ag.base_loop(test_prompt, max_steps=3, contex=contex, system_contex=system_contex)
+        print(f"📊 Base Loop Response:\n{base_response[:200]}...\n✅")
     except Exception as e:
         print(f"❌ Error in Base Loop: {e}")
-
+    
     # Test ReAct Loop
     try:
-        react_response = ag.react_loop(test_prompt, max_depth=3, contex=contex, system_contex=system_contex)
-        print(f"🔄 ReAct Loop Response:\n{react_response}\n✅")
+        react_response = ag.react_loop(test_prompt, max_steps=3, contex=contex, system_contex=system_contex)
+        print(f"⚡ ReAct Loop Response:\n{react_response[:200]}...\n✅")
     except Exception as e:
         print(f"❌ Error in ReAct Loop: {e}")
-
+    
     # Test ARX Loop (without human-in-the-loop)
     try:
-        arx_response = ag.arx_loop(test_prompt, max_depth=3, human_in_loop=False, contex=contex, system_contex=system_contex)
-        print(f"🔁 ARX Loop (No Human) Response:\n{arx_response}\n✅")
+        arx_response_no_human = ag.arx_loop(test_prompt, max_depth=2, human_in_loop=False, contex=contex, system_contex=system_contex)
+        print(f"🤖 ARX Loop (No Human) Response:\n{arx_response_no_human[:200]}...\n✅")
     except Exception as e:
         print(f"❌ Error in ARX Loop (No Human): {e}")
 
     # Test ARX Loop (with human-in-the-loop)
     try:
         arx_response_human = ag.arx_loop(test_prompt, max_depth=3, human_in_loop=True, contex=contex, system_contex=system_contex)
-        print(f"🧑‍💼 ARX Loop (With Human) Response:\n{arx_response_human}\n✅")
+        print(f"🧑‍💼 ARX Loop (With Human) Response:\n{arx_response_human[:200]}...\n✅")
     except Exception as e:
         print(f"❌ Error in ARX Loop (With Human): {e}")
 

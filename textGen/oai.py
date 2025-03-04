@@ -370,98 +370,84 @@ if __name__ == '__main__':
     # Initialize the wrapper.
     oai = OAI(api_keys_path)
 
-    # Test Chat Completion: Generate a job-hunting strategy.
-    print("== Chat Completion Test ==")
-    chat_reply = oai.chat_completion(
-        "Provide a job-hunting strategy tailored for a professional with expertise in AI, design, and creative technology, "
-        "who is looking for opportunities in top tech firms like Meta, Apple, and OpenAI."
-    )
-    print("Chat Reply:", chat_reply)
-
-    # Test Embeddings: Create an embedding for the strategy response.
-    print("\n== Embeddings Test ==")
-    embed = oai.get_embeddings(chat_reply)
-    print("Embeddings shape:", embed.shape)
-
-    # Test Structured Output: Generate a structured research plan for a target company.
+    # Test Structured Output: Generate a product comparison in structured format.
     print("\n== Structured Output Test ==")
     structured = oai.structured_output(
-        f"Create a structured research plan for understanding and analyzing a target company's background "
-        f"before applying for a job there. Use {chat_reply} as a guideline.",
-        system_prompt="Return the output in structured JSON format with keys 'company_name', 'research_steps', and 'insights'."
+        "Compare electric vs. gas vehicles on environmental impact, cost, and performance",
+        system_prompt="You are a knowledgeable automotive analyst. Provide a detailed comparison."
     )
-    print("Structured Output:", structured)
-
-    # Test Reasoned Completion: Evaluate the feasibility of the job-hunting plan.
+    print("Structured Output:", json.dumps(structured, indent=2))
+    
+    # Test Reasoned Completion: Analyze the comparison with more depth.
     print("\n== Reasoned Completion Test ==")
     reasoned_response = oai.reasoned_completion(
-        f"Assess if this job-hunting strategy is effective for breaking into top-tier AI firms. "
-        f"What are potential pitfalls or areas of improvement? Strategy JSON: {structured}",
+        f"Assess if this vehicle comparison is comprehensive and balanced. "
+        f"What important factors might be missing? Comparison JSON: {structured}",
         reasoning_effort="medium"
     )
     print("Reasoned Response:", reasoned_response)
-
-    # Test Chat Completion with Tool Integration: Generate a tailored cold email.
-    def generate_cold_email() -> str:
-        """Generate a cold email for reaching out to hiring managers."""
+    
+    # Test Chat Completion with Tool Integration: Generate supplementary information.
+    def generate_buying_guide() -> str:
+        """Generate a buying guide for vehicle selection."""
         return oai.chat_completion(
-            f"Draft a compelling cold email based on this job-hunting strategy. "
-            f"Ensure it is concise, professional, and tailored for reaching out to a hiring manager. "
-            f"Use the following research insights: {structured}."
+            f"Create a concise buying guide based on the vehicle comparison. "
+            f"Include key considerations for a typical consumer. "
+            f"Use the following analysis: {structured}."
         )
-
-    tool_schema = oai.convert_function_to_tool(generate_cold_email)
+    
+    tool_schema = oai.convert_function_to_tool(generate_buying_guide)
     tools = [tool_schema]
-    available_tools = {"generate_cold_email": generate_cold_email}
-
+    available_tools = {"generate_buying_guide": generate_buying_guide}
+    
     print("\n== Chat Completion with Tool Integration Test ==")
     integrated_reply = oai.chat_completion(
-        "Can you generate a personalized cold email based on my job-hunting research?",
+        "Can you create a helpful buying guide based on this vehicle comparison?",
         tools=tools,
         available_tools=available_tools
     )
     print("Integrated Chat Reply:", integrated_reply)
-
-    # Test Image Generation: Generate a visual representation of a strong job application.
+    
+    # Test Image Generation: Generate a visual representation of modern transportation.
     print("\n== Image Generation Test ==")
     image_urls = oai.generate_image(
-        "A visually striking digital concept art of a job application being noticed in a competitive hiring environment, "
-        "representing success, strategy, and innovation.",
+        "A visually striking digital concept art comparing electric and gas vehicles, "
+        "representing sustainability, technology, and modern transportation.",
         size="1024x1024",
         n=1
     )
     print("Generated Image URL(s):", image_urls)
-
+    
     # Open the image URL in Safari.
     print("\n== Open Image in Safari Test ==")
     if image_urls:
         webbrowser.open(image_urls[0])
-
+    
     # Test Vision Analysis: Extract insights from the generated image.
     print("\n== Vision Analysis Test ==")
     vision_reply = oai.vision_analysis(
         image_urls[0],
-        user_prompt="Describe this image in the context of job hunting, success, and innovation."
+        user_prompt="Describe this image in the context of transportation evolution and environmental impact."
     )
     print("Vision Analysis Reply:", vision_reply)
-
+    
     # Test Text-to-Speech (TTS) and Audio Transcription (STT): Convert the vision response to speech and transcribe it back.
     print("\n== TTS and STT Integration Test ==")
     tts_text = vision_reply if vision_reply else "No integrated reply."
     tts_output_path = os.path.join(os.path.dirname(__file__), "tts_output.mp3")
-
+    
     print("\n== Testing TTS ==")
     print(tts_output_path)
     tts_result = oai.text_to_speech(tts_text, output_path=tts_output_path)
-
+    
     if isinstance(tts_result, str) and os.path.exists(tts_output_path):
         print("TTS Output File Saved:", tts_output_path)
         print("Playing the generated speech...")
         sound.play_effect(tts_output_path)
-
+        
         # Wait for audio playback to complete before transcribing
         time.sleep(3)
-
+        
         print("\n== Testing STT ==")
         transcript = oai.transcribe_audio(tts_output_path)
         print("Transcribed Text:", transcript)

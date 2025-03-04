@@ -113,36 +113,25 @@ class AgentGen(TextGen):
 
 
 if __name__ == "__main__":
-    print("\n🚀 Running AgentGen Simple Chat...\n")
-
-    # Initialize AgentGen
-    ag = AgentGen(api_keys_path=None)
-
-    # Load context files using Utils
-    about_alin = Utils.load_file("about_Alin.md") or ""
-    about_arvolve = Utils.load_file("about_Arvolve.md") or ""
-    style_alin = Utils.load_file("style_Alin.md") or ""
-    style_arvolve = Utils.load_file("style_Arvolve.md") or ""
-
-    # Merge context and system context
-    contex = about_alin + "\n" + about_arvolve
-    system_contex = style_alin + "\n" + style_arvolve
-
-    print("💬 Start chatting with the AI (type 'bye' to exit).")
+    print("=== AgentGen Basic Demo ===")
     
+    # Initialize the agent
+    ag = AgentGen()
+    
+    # Setup system and user context 
+    system_contex = "You are a helpful technology research assistant powered by AI."
+    contex = "Provide concise, accurate responses focusing on modern technology trends and applications."
+    
+    # List of tool names for demonstration (can be automatically selected by agent too)
+    tool_list = ["get_codebase_snapshot", "web_crawl_query", "generate_qr_code"]
+    
+    print("🤖 AI Assistant Initialized")
+    print("Available tools:", tool_list)
+    print("Type 'bye' to exit the chat")
+    
+    # Simple chat loop
     while True:
-        # Print available tools
-        available_tools = ag.get_available_tools()
-        tool_names = [tool["name"] if isinstance(tool, dict) else tool for tool in available_tools]
-
-        print("\n🛠️ Available Tools: " + ", ".join(tool_names) if tool_names else "No tools available.")
-        
-        # Let user choose tools
-        chosen_tools = input("\n⚙️ Select tools to use (comma-separated, or press Enter to auto-select): ").strip()
-        
-        # Convert user input into a tool list
-        tool_list = [tool.strip() for tool in chosen_tools.split(",") if tool.strip()] if chosen_tools else []
-
+        print("-" * 40)
         user_input = input("\n👤 You: ")
 
         if user_input.lower() == "bye":

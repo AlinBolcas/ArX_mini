@@ -131,6 +131,9 @@ venv.bak/
 /data/api_key.py
 /data/api_keys.py
 
+# Project specific
+/data/
+/output/
 
 # Spyder project settings
 .spyderproject

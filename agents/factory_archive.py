@@ -238,18 +238,18 @@ class Factory:
         }
 
 if __name__ == '__main__':
-    # Define a dictionary of project ideas
+    # Dictionary of project ideas (kept general and neutral)
     project_ideas = {
-        "1": "Egyptian and Mongolian Language Translator: Develop a program that captures microphone input, transcribes it using OpenAI, translates the text into Egyptian Arabic or Mongolian, and converts the translated text back to speech for audio playback.",
-        "2": "Personal Expense Tracker: Create an application that allows users to input daily expenses, categorize them, and generate monthly reports to help manage personal finances.",
-        "3": "Digital Photo Album with Slideshow: Build a program that organizes photos into albums, allows users to add captions, and displays them in a slideshow format with transition effects.",
-        "4": "Home Inventory System: Design a system to catalog household items, including details like purchase date, value, and location, aiding in organization and insurance purposes.",
-        "5": "Simple Personal Diary with Search Functionality: Implement a digital diary where users can write daily entries and later search for specific entries by date or keywords.",
-        "6": "Unit Converter Tool: Create a utility that converts between various units of measurement, such as length, weight, and temperature, providing a handy reference tool.",
+        "1": "Language Translation Tool: Develop a program that captures microphone input, transcribes it using OpenAI, translates the text into another language, and converts the translated text back to speech for audio playback.",
+        "2": "Expense Tracker: Create an application that allows users to input expenses, categorize them, and generate monthly reports to help manage finances.",
+        "3": "Photo Album with Slideshow: Build a program that organizes photos into albums, adds captions, and displays them in a slideshow format with transition effects.",
+        "4": "Inventory Management System: Design a system to catalog items, including details like purchase date, value, and location, aiding in organization.",
+        "5": "Digital Diary with Search: Implement a digital diary where users can write entries and later search for specific entries by date or keywords.",
+        "6": "Unit Converter Tool: Create a utility that converts between various units of measurement, such as length, weight, and temperature.",
         "7": "Family Tree Generator: Develop an application that helps users input family member information and generates a visual family tree diagram.",
-        "8": "Music Playlist Organizer: Build a program that allows users to organize their music files into playlists, edit metadata, and play songs directly from the application.",
+        "8": "Music Playlist Organizer: Build a program that allows users to organize music files into playlists, edit metadata, and play songs directly.",
         "9": "Book Collection Manager: Create a system for users to catalog their book collections, track which books they've read, and generate reading statistics.",
-        "10": "Health and Fitness Tracker: Design an application where users can log their daily exercise routines, monitor progress over time, and receive suggestions for improvement."
+        "10": "Fitness Tracker: Design an application where users can log exercise routines, monitor progress over time, and receive suggestions for improvement."
     }
 
     # Display the project options

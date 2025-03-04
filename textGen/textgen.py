@@ -260,55 +260,55 @@ if __name__ == "__main__":
     tg.memory.reboot_memory()
     
     # Example 1: Simple chat completion.
-    prompt1 = "my ear hurts from barotrauma first dive today and im a bby."
-    response1 = tg.chat_completion(prompt1, system_contex="Empathic lover.")
+    prompt1 = "What are three benefits of artificial intelligence in healthcare?"
+    response1 = tg.chat_completion(prompt1, system_contex="You are a helpful technology consultant.")
     print("--- Chat Completion Response ---")
     print(response1)
     
     # Example 2: Chat completion with tool integration.
-    prompt2 = "what could we create with this codebase? give me a list of your top 10 best ideas."
-    response2 = tg.chat_completion(prompt2, system_contex="use tool to check code base.", tool_names=["get_codebase_snapshot"])
+    prompt2 = "What are the primary features of this framework? Give me a list of the top 5 capabilities."
+    response2 = tg.chat_completion(prompt2, system_contex="Analyze the codebase to provide accurate information.", tool_names=["get_codebase_snapshot"])
     print("\n--- Chat Completion with Tool Integration ---")
     print(response2)
     
     # Example 3: Structured output.
-    prompt3 = "Generate a structured JSON list of 5 ways to approach big tech company clients in CGI and AI."
+    prompt3 = "Generate a structured JSON list of 5 emerging technology trends for 2023."
     structured = tg.structured_output(prompt3)
     print("\n--- Structured Output ---")
     print(structured)
     
     # Example 4: Vision analysis.
     image_url = "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png"
-    prompt4 = "Describe the image in plain hiaku."
+    prompt4 = "Describe this image in a short haiku."
     vision_reply = tg.vision_analysis(image_url, prompt4)
     print("\n--- Vision Analysis Response ---")
     print(vision_reply)
     
     # Example 5: Reasoned completion.
-    prompt5 = "list the ways of creative agentic frameworks? which methods would an agent class have which uses a text generatiom llm calls. Ive heard of ReAct, Reflexion, chain of thought, tree of thought, etc.. Write me a comprehansive yet condense overview of what i need to know to build a state of the art agentGen class. "
-    reasoned_reply = tg.reasoned_completion(prompt5, system_contex="Focus on scalability and integration challenges.")
+    prompt5 = "What are the main agent frameworks in AI? Explain the key methods an agent class would have when using LLM calls. Include approaches like ReAct, Reflexion, chain of thought, and tree of thought. Provide a concise overview of what's needed to build a modern agent architecture."
+    reasoned_reply = tg.reasoned_completion(prompt5, system_contex="Focus on practical implementation details.")
     print("\n--- Reasoned Completion Response ---")
     print(reasoned_reply)
     
     # Example 6: Direct retrieval of long-term memory context.
-    memory_context = tg.retrieve_memory_context("transformer architectures")
+    memory_context = tg.retrieve_memory_context("machine learning algorithms")
     print("\n--- Retrieved Long-Term Memory Context ---")
     print(memory_context)
     
     # Example 7: Practical test using file-based context.
     # Load external context files using Utils.
-    about_alin = Utils.load_file("about_Alin.md")
-    about_arvolve = Utils.load_file("about_Arvolve.md")
+    project_info = Utils.load_file("project_info.md")
+    technology_stack = Utils.load_file("technology_stack.md")
     
-    if about_alin is None:
-        print("Error: 'about_Alin.md' file not found.")
-    if about_arvolve is None:
-        print("Error: 'about_Arvolve.md' file not found.")
+    if project_info is None:
+        print("Error: 'project_info.md' file not found.")
+    if technology_stack is None:
+        print("Error: 'technology_stack.md' file not found.")
     
-    if about_alin and about_arvolve:
-        prompt7 = "Based on the information provided, what are the top 5 companies and top 3 roles for each of those companies that Alin as director of Arvolve should reach out to as the most ideal potential new clients or collaborators?"
-        # Use about_arvolve.md as the system context and about_Alin.md as the user contex.
-        response7 = tg.chat_completion(prompt7, system_contex=about_alin, contex=about_arvolve)
+    if project_info and technology_stack:
+        prompt7 = "Based on the project information and technology stack, suggest 5 potential enhancements or new features that would add the most value to this framework."
+        # Use project_info as the system context and technology_stack as the user contex.
+        response7 = tg.chat_completion(prompt7, system_contex=project_info, contex=technology_stack)
         print("\n--- Chat Completion with File Context ---")
         print(response7)
     

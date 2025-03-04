@@ -1,7 +1,7 @@
 # ARX-Mini: OpenAI API Wrapper for Pythonista
 
 <p align="center">
-  <img src="data/visuals/video_cover_03.gif" alt="ARX-Mini Animation" width="600"/>
+  <img src="data/visuals/video_cover_03.gif" alt="ARX-Mini Animation" width="400"/>
 </p>
 
 ARX-Mini is a lightweight yet powerful OpenAI API wrapper developed specifically for Pythonista on iOS. It provides a minimal, low-level framework for creating complex text generation applications with memory management, retrieval-augmented generation (RAG), and tool execution capabilities.
@@ -35,7 +35,7 @@ OPENAI_API_KEY = "your_openai_api_key"
 ## Quick Start
 
 <p align="center">
-  <img src="data/visuals/video_cover_02.gif" alt="ARX-Mini Quick Start" width="550"/>
+  <img src="data/visuals/video_cover_02.gif" alt="ARX-Mini Quick Start" width="500"/>
 </p>
 
 ### Basic Chat Completion
@@ -89,7 +89,7 @@ print(analysis)
 
 ## Architecture
 <p align="center">
-  <img src="data/visuals/video_cover.gif" alt="ARX-Mini Architecture" width="550"/>
+  <img src="data/visuals/video_cover.gif" alt="ARX-Mini Architecture" width="500"/>
 </p>
 
 ### TextGen
@@ -142,7 +142,7 @@ Agent framework built on TextGen:
 
 ## Advanced Usage
 <p align="center">
-  <img src="data/visuals/video_cover_04.gif" alt="ARX-Mini Advanced Usage" width="550"/>
+  <img src="data/visuals/video_cover_04.gif" alt="ARX-Mini Advanced Usage" width="400"/>
 </p>
 
 ### Memory Management
